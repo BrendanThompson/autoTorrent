@@ -2,6 +2,8 @@
 
 AUTHFILE="/Users/$(whoami)/.netrc"
 USER=$(whoami)
+TR="/usr/local/bin/transmission-remote"
+TR_URL="https://github.com/BrendanThompson/addTorrent/master/transmission-remote"
 
 # TRC="/usr/local/bin/transmission-remote-cli"
 # eval $TRC
@@ -41,6 +43,13 @@ function checkAuth() {
 
 function _exec() {
     ## stuff
+    if [[ -x $TR ]]; then
+        echo "Transmission-remote exists"
+    else
+        wget $TR_URL --output-document=$TR
+    fi
+    
+    $TR -N $AUTHFILE $1
 }
 
 function countTorrent() {
@@ -49,10 +58,10 @@ function countTorrent() {
 }
 
 function addTorrents() {
-
-find /Users/$USER/Downloads -name "*.torrent" -type f | while read file
-do
-    
+    find /Users/$USER/Downloads -name "*.torrent" -type f | while read file
+    do
+        _exec $file
+    done
 }
 
 
