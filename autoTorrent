@@ -3,7 +3,7 @@
 AUTHFILE="/Users/$(whoami)/.netrc"
 USER=$(whoami)
 TR="/usr/local/bin/transmission-remote"
-TR_URL="https://github.com/BrendanThompson/addTorrent/master/transmission-remote"
+TR_URL="https://github.com/BrendanThompson/autoTorrent/master/transmission-remote"
 
 # TRC="/usr/local/bin/transmission-remote-cli"
 # eval $TRC
